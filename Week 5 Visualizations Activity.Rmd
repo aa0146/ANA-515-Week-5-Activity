@@ -1,0 +1,34 @@
+---
+title: "Week 5 Visualization Activity"
+author: "Abhijeet"
+date: "25 June 2022"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#code chunk to call the installed packages
+library(dplyr)
+library(ggplot2)
+```
+
+##Histogram for avg_hatecrimes_per_100k_fbi
+This variable, "avg_hatecrimes_per_100k_fbi" describes the average annual hate crimes per 100,000 population as per FBI data from 2010-2015. The below histogram shows that the average annual hate crimes are more in the range of 0 to 4 hate crimes per 100,000 population. Only one state has an average hate crime more than 10 per 100,000 population. 
+
+
+```{r, echo = FALSE, warning=FALSE}
+hate_crimes <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/hate-crimes/hate_crimes.csv")
+avg_hatecrimes_per_100k_fbi = hate_crimes$avg_hatecrimes_per_100k_fbi
+hist(avg_hatecrimes_per_100k_fbi)
+```
+
+
+##Scatter plot displaying relationship between median_household_income and avg_hatecrimes_per_100k_fbi
+The below scatter plot displaying relationship between average annual hate crimes per 100,000 population and the Median household incom (2016). The plot shows that states with more median household income tend to have more average annual hate crimes. 
+
+```{r, echo = FALSE, warning=FALSE}
+hate_crimes <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/hate-crimes/hate_crimes.csv")
+ggplot(hate_crimes, aes(x=median_household_income, y=avg_hatecrimes_per_100k_fbi)) +  
+  geom_point(colour = "red") +   ylim(0, 6)
+```
+
+
